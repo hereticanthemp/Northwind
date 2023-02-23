@@ -18,7 +18,7 @@ public class GetCategoryByIdQueryHandler : IQueryHandler<GetCategoryByIdQuery,Ca
         var category = await _categoryRepository.GetById(request.CategoryId, cancellationToken);
         if (category is null)
         {
-            return (Result<CategoryResponse>)Result.Failure(
+            return Result<CategoryResponse>.Failure(
                 new Error("Category.NotFound", $"Category with Id {request.CategoryId} was not found"));
         }
 

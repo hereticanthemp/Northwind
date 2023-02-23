@@ -18,7 +18,6 @@
     <ItemGroup>
       <Folder Include="Category\Commands\CreateCategory" />
       <Folder Include="Category\Commands\DeleteCategory" />
-      <Folder Include="Category\Commands\UpdateCategory" />
     </ItemGroup>
 
 </Project>

@@ -27,4 +27,16 @@ public class CategoryRepository : ICategoryRepository
             };
         return null;
     }
+
+    public async Task Update(int id, string name, string description, CancellationToken ctx)
+    {
+        var category = await _dbContext.Set<Models.Category>()
+            .FirstOrDefaultAsync(c => c.CategoryId == id, ctx);
+        if (category != null)
+        {
+            if (name != string.Empty) category.CategoryName = name;
+            if (description != string.Empty) category.Description = description;
+            await _dbContext.SaveChangesAsync(ctx);
+        }
+    }
 }
