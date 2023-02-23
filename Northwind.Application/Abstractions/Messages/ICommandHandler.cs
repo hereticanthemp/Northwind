@@ -1,6 +1,14 @@
+using MediatR;
+using Northwind.Domain.Shared;
+
 namespace Northwind.Application.Abstractions.Messages;
 
-public interface ICommandHandler
+public interface ICommandHandler<in TCommand> : IRequestHandler<TCommand, Result>
+    where TCommand : ICommand
 {
-    
+}
+
+public interface ICommandHandler<in TCommand, TResponse> : IRequestHandler<TCommand, Result<TResponse>>
+    where TCommand : ICommand<TResponse>
+{
 }
