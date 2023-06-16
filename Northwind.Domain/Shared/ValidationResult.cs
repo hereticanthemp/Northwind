@@ -1,6 +1,6 @@
 namespace Northwind.Domain.Shared;
 
-public class ValidationResult : Result, IValidationResult
+public sealed class ValidationResult : Result, IValidationResult
 {
     private ValidationResult(Error[] errors)
         : base(false, IValidationResult.ValidationError) =>
