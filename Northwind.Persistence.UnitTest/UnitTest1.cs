@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Northwind.Persistence.Data;
+using Northwind.Persistence.Repositories;
 
 namespace Northwind.Persistence.UnitTest;
 
@@ -17,7 +18,7 @@ public class Tests
     }
     
     [Test]
-    public void Foo_DoesBar_WhenBaz()
+    public async Task Foo_DoesBar_WhenBaz()
     {
         var options = new DbContextOptionsBuilder<MasterContext>()
             .UseInMemoryDatabase(databaseName: "foo_bar_baz")
@@ -25,6 +26,9 @@ public class Tests
 
         using (var context = new MasterContext(options))
         {
+            var categoryRepository = new CategoryRepository(context);
+
+            var byId = await categoryRepository.GetById(1,new CancellationToken());
         }
     }
 }
