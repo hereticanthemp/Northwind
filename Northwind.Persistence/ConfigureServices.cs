@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Northwind.Domain.Repositories;
 using Northwind.Persistence.Data;
@@ -9,7 +10,9 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services)
     {
-        services.AddSingleton<MasterContext>();
+        services.AddDbContext<MasterContext>(
+            options => options.UseSqlServer(
+                "Server=localhost;Database=master;User Id=sa;Password=<YourStrong@Passw0rd>;TrustServerCertificate=True"));
         services.AddScoped<ICategoryRepository, CategoryRepository>();
         return services;
     }
