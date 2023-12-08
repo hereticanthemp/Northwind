@@ -9,8 +9,8 @@ public static class ConfigureServices
 {
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
-        services.AddMediatR(AssemblyReference.Assembly);
-
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AssemblyReference.Assembly));
+        
         // Validation Pipeline
         services.AddScoped(typeof(IPipelineBehavior<,>),
             typeof(ValidationPipelineBehavior<,>));
